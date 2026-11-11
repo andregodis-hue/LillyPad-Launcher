@@ -1,0 +1,5 @@
+# Signed test files must keep their exact bytes on every system. Windows checkouts would otherwise
+# turn LF into CRLF, and the minisign signature of release.json would no longer match.
+app/src-tauri/tests/fixture/** -text
+*.minisig -text
+*.pub -text
