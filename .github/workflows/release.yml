@@ -127,10 +127,15 @@ jobs:
           set -euo pipefail
           cp out/unsigned.sha256 out/SHA256SUMS.txt
           (cd out/unsigned && sha256sum --check ../SHA256SUMS.txt)
-          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease \
-            --title "Lillypad Launcher $TAG (unsigned pre release)" \
-            --notes "Unsigned test build made by the release workflow. Windows will warn that the publisher is unknown. Compare the installer with SHA256SUMS.txt before running it." \
-            out/unsigned/*-setup.exe out/SHA256SUMS.txt
+          # The release may already exist when the tag was made on the GitHub web page. Then only the files are added.
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --prerelease
+          else
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease \
+              --title "Lillypad Launcher $TAG (unsigned pre release)" \
+              --notes "Unsigned test build made by the release workflow. Windows will warn that the publisher is unknown. Compare the installer with SHA256SUMS.txt before running it."
+          fi
+          gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" --clobber out/unsigned/*-setup.exe out/SHA256SUMS.txt
 
   publish:
     needs: sign
