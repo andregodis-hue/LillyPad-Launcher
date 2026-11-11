@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' ipc: http://ipc.localhost; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lillypad Launcher</title>
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/app.css">
+<!-- mock.js is only for browser preview. It does nothing when the Tauri bridge exists. Remove the line for release builds if you like. -->
+<script defer src="js/mock.js"></script>
+<script defer src="js/api.js"></script>
+<script defer src="js/main.js"></script>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="test-banner" id="test-banner" hidden>TESTLÄGE. Offline spelare utan Microsoft inloggning. Kan inte gå med på den publika servern.</div>
+
+  <main class="stage">
+    <div class="hero" role="img" aria-label="En damm med näckrosblad"></div>
+
+    <header class="brand">
+      <img src="assets/img/logo_128.png" width="48" height="48" alt="">
+      <div class="brand-text">
+        <span class="brand-name">Lillypad</span>
+        <span class="brand-sub">Launcher</span>
+      </div>
+    </header>
+    <div class="server-tag"><span class="dot"></span>Lulumon Create</div>
+
+    <section class="dock" id="dock" data-state="loading" aria-live="polite">
+      <div class="dock-text">
+        <h1 id="status-title">Startar</h1>
+        <p id="status-text">Kontrollerar konto och modpack.</p>
+        <div class="progress-row" id="progress-row" hidden>
+          <progress id="progress" max="100" value="0"></progress>
+          <span id="progress-label">0 %</span>
+        </div>
+        <p class="note" id="status-note" hidden></p>
+      </div>
+      <div class="dock-actions">
+        <button type="button" class="btn-secondary" id="retry" hidden>Försök igen</button>
+        <button type="button" class="btn-play" id="primary" disabled>Spela</button>
+      </div>
+    </section>
+
+    <div class="dialog-backdrop" id="login-dialog" hidden>
+      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <h2 id="login-title">Logga in hos Microsoft</h2>
+        <p class="dialog-lead">Inloggningen sker på Microsofts officiella sida i din webbläsare. Launchern ser aldrig ditt lösenord.</p>
+        <ol class="steps">
+          <li>
+            <span class="step-label">Öppna sidan</span>
+            <div class="step-row">
+              <span class="link-text" id="login-uri"></span>
+              <button type="button" class="btn-secondary" id="login-open">Öppna sidan</button>
+            </div>
+          </li>
+          <li>
+            <span class="step-label">Ange koden</span>
+            <div class="step-row">
+              <span class="code" id="login-code"></span>
+              <button type="button" class="btn-secondary" id="login-copy">Kopiera</button>
+            </div>
+          </li>
+        </ol>
+        <div class="dialog-foot">
+          <span class="waiting"><span class="pulse"></span><span id="login-wait">Väntar på att du loggar in</span></span>
+          <button type="button" class="btn-quiet" id="login-cancel">Avbryt</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="side">
+    <div class="account">
+      <img class="head" id="head" src="assets/img/head_default.png" width="40" height="40" alt="">
+      <div class="account-text">
+        <span class="account-name" id="player-name">Inte inloggad</span>
+        <span class="account-sub" id="player-sub">Logga in för att spela</span>
+      </div>
+      <button type="button" class="icon-btn" id="open-settings" aria-label="Inställningar" title="Inställningar">
+        <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" shape-rendering="crispEdges">
+          <path fill="currentColor" d="M7 1h2v2h2V2h2v2h-1v2h2v1h1v2h-1v1h-2v2h1v2h-2v-1H9v2H7v-2H5v1H3v-2h1v-2H2V9H1V7h1V6h2V4H3V2h2v1h2zM6 6v4h4V6z"/>
+        </svg>
+      </button>
+    </div>
+
+    <section class="panel news" id="news-panel">
+      <div class="panel-head">
+        <h2>Nyheter</h2>
+        <span class="version-tag" id="news-version"></span>
+      </div>
+      <div class="news-list" id="news-list"></div>
+    </section>
+
+    <section class="panel settings" id="settings-panel" hidden>
+      <div class="panel-head">
+        <h2>Inställningar</h2>
+        <button type="button" class="btn-quiet" id="close-settings">Tillbaka</button>
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label for="ram">Minne till spelet</label>
+          <output id="ram-value" for="ram">0 GB</output>
+        </div>
+        <input type="range" id="ram" min="2048" max="16384" step="512" value="6144">
+        <p class="hint" id="ram-hint">Rekommenderat för modpacket: 6 till 8 GB.</p>
+      </div>
+
+      <div class="field row">
+        <span class="field-label">Java</span>
+        <span class="field-value" id="java-value">Automatiskt</span>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Tema</span>
+        <div class="segmented" id="theme-choice" role="group" aria-label="Tema">
+          <button type="button" data-theme-choice="system">System</button>
+          <button type="button" data-theme-choice="light">Ljust</button>
+          <button type="button" data-theme-choice="dark">Mörkt</button>
+        </div>
+      </div>
+
+      <div class="settings-actions">
+        <button type="button" class="btn-secondary wide" id="open-folder">Öppna spelmappen</button>
+        <button type="button" class="btn-danger wide" id="sign-out">Logga ut</button>
+      </div>
+    </section>
+    <nav class="links" aria-label="Länkar">
+      <button type="button" class="link-btn" data-link="site">Webbplats</button>
+      <button type="button" class="link-btn" data-link="rules">Regler</button>
+      <button type="button" class="link-btn" data-link="discord">Discord</button>
+    </nav>
+  </aside>
+
+</div>
+</body>
+</html>

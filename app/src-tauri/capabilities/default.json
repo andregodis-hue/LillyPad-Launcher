@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Only the launcher's own commands. No filesystem, shell, http or opener plugin is exposed to the page.",
+  "windows": ["main"],
+  "permissions": [
+    "allow-auth-status", "allow-auth-login", "allow-auth-logout", "allow-pack-status", "allow-pack-update",
+    "allow-game-play", "allow-game-stop", "allow-settings-get", "allow-settings-set",
+    "allow-open-game-folder", "allow-news-get", "allow-open-url"
+  ]
+}

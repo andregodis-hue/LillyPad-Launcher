@@ -1,0 +1,13 @@
+# Never commit secrets or build output.
+keys/
+*.key
+*.pem
+*.p12
+*.pfx
+.env
+.env.*
+*.log
+target/
+node_modules/
+app/src-tauri/gen/
+app/src-tauri/permissions/

@@ -1,0 +1,43 @@
+[
+ {
+  "version": "1.1.2",
+  "date": "2026-11-11",
+  "title": "Rättningar efter provstart",
+  "changes": [
+   "NeoForge 21.1.264, som flera Aeronautics tillägg kräver.",
+   "Sodium med för Create Better FPS.",
+   "Ett tillägg som saknade sitt beroende är borttaget."
+  ],
+  "url": null
+ },
+ {
+  "version": "1.1.1",
+  "date": "2026-11-11",
+  "title": "Fler Aeronautics tillägg",
+  "changes": [
+   "Create Aeronautics Structures och AeroEngine är med."
+  ],
+  "url": null
+ },
+ {
+  "version": "1.1.0",
+  "date": "2026-11-11",
+  "title": "Hela Create",
+  "changes": [
+   "167 mods med Create 6.0.10, Aeronautics och Sable.",
+   "Terralith med strukturmods.",
+   "Cobblemon är borta.",
+   "EMI ersätter JEI."
+  ],
+  "url": null
+ },
+ {
+  "version": "1.0.0",
+  "date": "2026-11-10",
+  "title": "Första testversionen",
+  "changes": [
+   "Create, Aeronautics, Sable och klientmodden."
+  ],
+  "url": null
+ }
+]

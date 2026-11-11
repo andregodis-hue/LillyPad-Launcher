@@ -1,0 +1,57 @@
+/* Local fonts only, both under the SIL Open Font License (see assets/fonts). */
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../assets/fonts/nunito-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("../assets/fonts/nunito-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("../assets/fonts/nunito-latin-700-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 800;
+  font-display: block;
+  src: url("../assets/fonts/nunito-latin-800-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pixelify Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../assets/fonts/pixelify-sans-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pixelify Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("../assets/fonts/pixelify-sans-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pixelify Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("../assets/fonts/pixelify-sans-latin-700-normal.woff2") format("woff2");
+}

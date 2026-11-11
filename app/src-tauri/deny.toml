@@ -1,0 +1,20 @@
+[graph]
+targets = ["x86_64-pc-windows-msvc", "x86_64-unknown-linux-gnu"]
+
+[advisories]
+version = 2
+# Linux only GTK stack pulled in by Tauri (not part of the Windows build): unmaintained / unsound notices, no fix exists.
+ignore = ["RUSTSEC-2024-0370", "RUSTSEC-2024-0429"]
+
+[licenses]
+version = 2
+allow = ["MIT", "Apache-2.0", "Apache-2.0 WITH LLVM-exception", "BSD-2-Clause", "BSD-3-Clause", "ISC", "Unicode-3.0", "Zlib", "MPL-2.0", "CC0-1.0", "0BSD", "BSL-1.0", "OpenSSL", "CDLA-Permissive-2.0"]
+confidence-threshold = 0.8
+
+[bans]
+multiple-versions = "warn"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]

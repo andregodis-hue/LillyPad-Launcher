@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DRAFT for SignPath. Paste into the project's artifact configuration in the SignPath UI and let SignPath validate it.
+     The GitHub artifact is a zip that holds the NSIS installer. File metadata restrictions are required by the
+     SignPath Foundation terms: product name fixed, product version the same in every build of a release. -->
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <zip-file>
+    <pe-file path="Lillypad Launcher_*_x64-setup.exe">
+      <file-metadata-restrictions>
+        <file-metadata-restriction name="ProductName" value="Lillypad Launcher" />
+      </file-metadata-restrictions>
+      <authenticode-sign />
+    </pe-file>
+  </zip-file>
+</artifact-configuration>
