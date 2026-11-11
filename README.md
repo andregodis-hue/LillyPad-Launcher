@@ -6,6 +6,11 @@ Lillypad Launcher installs and starts the Lulumon Create modpack for the Lillypa
 
 Licence: MIT. See LICENSE and THIRD_PARTY.md.
 
+## Download
+Get the Windows installer from the [Releases page](https://github.com/andregodis-hue/LillyPad-Launcher/releases). Each release has the installer and a `SHA256SUMS.txt` file, so you can compare the file before you run it.
+
+Version 0.1.0 is an unsigned pre release, so Windows will warn that the publisher is unknown. Later releases will be signed. Free code signing provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.org).
+
 ## What it does
 * Signs in with the Microsoft device code flow. The player types a code on microsoft.com/link. The launcher never sees a password. The refresh token is kept in the Windows Credential Manager.
 * Downloads a signed release file (`release.json`, minisign) from lillypadnetwork.se, then installs the modpack and the game files it names. Every file is checked against a SHA1, SHA256 or SHA512 hash before it is used.
@@ -53,6 +58,11 @@ The interface and artwork were designed and written by Fable (an AI model by Ant
 Lillypad Launcher installerar och startar modpacket Lulumon Create för Lillypad Networks server. Spelaren loggar in med Microsoft, launchern installerar spelet, Java, NeoForge och modparna, håller dem uppdaterade och startar spelet. Den är skriven i Rust med Tauri 2. Gränssnittet är vanlig HTML, CSS och TypeScript.
 
 Licens: MIT. Se LICENSE och THIRD_PARTY.md.
+
+## Ladda ner
+Hämta installationsfilen för Windows från [sidan Releases](https://github.com/andregodis-hue/LillyPad-Launcher/releases). Varje release har installationsfilen och filen `SHA256SUMS.txt`, så att du kan jämföra filen innan du kör den.
+
+Version 0.1.0 är en osignerad förhandsversion, så Windows varnar för okänd utgivare. Senare versioner kommer att vara signerade. Gratis kodsignering från [SignPath.io](https://signpath.io), certifikat från [SignPath Foundation](https://signpath.org).
 
 ## Vad den gör
 * Loggar in med Microsofts enhetskod. Spelaren skriver en kod på microsoft.com/link. Launchern ser aldrig något lösenord. Inloggningstoken sparas i Windows Credential Manager.
